@@ -12,6 +12,10 @@ public class Homework1 {
 		// End of arguments input sample
 		
 		// TODO: Implement your project here
-
+		Node node = new Node();
+		String input = args[0];
+		for (int i = input.length()-1;i>=0 ; i--) {
+			
+		}
 	}
 }
