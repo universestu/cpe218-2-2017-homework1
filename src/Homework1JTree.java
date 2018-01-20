@@ -1,3 +1,5 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.util.Stack;
 
 import javax.swing.*;
@@ -73,6 +75,9 @@ public class Homework1JTree extends JPanel
         splitPane.setDividerLocation(100);
         splitPane.setPreferredSize(new Dimension(500, 300));
 
+        htmlPane.setText("Binary Tree Calculator \n" +
+                "Patsakorn Towtrakool 590610644");
+
         ImageIcon nodeIcon = createImageIcon("middle.gif");
         if (nodeIcon != null) {
             DefaultTreeCellRenderer renderer =
@@ -144,7 +149,7 @@ public class Homework1JTree extends JPanel
         if (n.leftChild != null) {
             DefaultMutableTreeNode node1 =
                     new DefaultMutableTreeNode(
-                            new NodeInfo(n.data, infix(n.leftChild),
+                            new NodeInfo(n.leftChild.toString(), infix(n.leftChild),
                                     calculate(n.leftChild)));
             top.add(node1);
             inorderTraversal(node1, n.leftChild);
@@ -153,7 +158,7 @@ public class Homework1JTree extends JPanel
         if (n.rightChild != null) {
             DefaultMutableTreeNode node2 =
                     new DefaultMutableTreeNode(
-                            new NodeInfo(n.data, infix(n.rightChild),
+                            new NodeInfo(n.rightChild.toString(), infix(n.rightChild),
                                     calculate(n.rightChild)));
             top.add(node2);
             inorderTraversal(node2, n.rightChild);
@@ -273,7 +278,7 @@ public class Homework1JTree extends JPanel
     }
 
 
-    public static class Node extends DefaultMutableTreeNode {
+    public static class Node{
 
         public Node leftChild, rightChild;
         public String data;
@@ -294,6 +299,10 @@ public class Homework1JTree extends JPanel
             this.data = data;
         }
 
+        @Override
+        public String toString() {
+            return data;
+        }
     }
 
     public static class Tree {
