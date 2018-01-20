@@ -1,5 +1,5 @@
 public class Node {
-    private String value_node = "";
+    private char value_node;
     private Node left,right;
 
     Node(){
@@ -23,7 +23,7 @@ public class Node {
         this.right = right_node;
     }
 
-    public void SetValueNode(String Value) {
+    public void SetValueNode(char Value) {
         this.value_node = Value;
     }
 }
