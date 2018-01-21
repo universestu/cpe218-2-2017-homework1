@@ -1,26 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package main;
+
+package homework1;
 
 import java.util.Stack;
 
-/**
- *
- * @author WINDOWS10
- */
 public class Homework1 {
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static String input; 
     public static void main(String[] args) {
         // TOD.O code application logic here
-        
-        String in ="251-*32*+";
+        if (args.length > 0) {
+	String in = args[0];
+        //String in ="251-*32*+";
         input = in;
         //System.out.println(in.length());
         node tree = new node();
@@ -28,6 +19,7 @@ public class Homework1 {
         inorder(tree);  
         int ans = calculate(tree);
         System.out.print("=" + ans);    
+        }
     }
     
     public static node infix(node tree) {
@@ -83,8 +75,21 @@ public class Homework1 {
             int sum = 0;
             if((x.right.data=='+'||x.right.data=='-'||x.right.data=='*'||x.right.data=='/')&&(x.left.data=='+'||x.left.data=='-'||x.left.data=='*'||x.left.data=='/'))
             {
-                sum+=calculate(x.right); 
-                sum+=calculate(x.left); 
+                switch(x.data){
+                    case '+':
+                        sum = calculate(x.left)+calculate(x.right);   
+                        break;
+                    case '-':
+                        sum = calculate(x.left)-calculate(x.right);   
+                        break;
+                    case '*':
+                        sum = calculate(x.left)*calculate(x.right); 
+                        break;
+                    case '/':
+                        sum = calculate(x.left)/calculate(x.right); 
+                        break;
+                }
+                
             }
             else if(x.right.data=='+'||x.right.data=='-'||x.right.data=='*'||x.right.data=='/')
             {
