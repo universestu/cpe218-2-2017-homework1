@@ -4,20 +4,9 @@ import java.util.*;
 
 public class Homework1 {
     static Stack stack = new Stack();
-    static Node root;
+    static Node root; //root node
 
-    static public void inorder(Node n) {
-        if (n != null){
-            if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
-            NodeList list = n.getChildNodes();
-            inorder(list.item(1)); //recursive left node
-            System.out.print(n.getNodeName());   //print itself
-            inorder(list.item(0));    //recursive right node
-            if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print(")");
-        }
-    }
-
-    static public void infix(Node n) {
+    public static void infix(Node n) {
         //base case
         if(!isOperate(n.getNodeName().charAt(0))) {
             n.setNodeValue(n.getNodeName());
@@ -36,10 +25,21 @@ public class Homework1 {
         calculate(n);
     }
 
-    static public void calculate(Node n) {
-        NodeList list = n.getChildNodes();
-        int left_value = Integer.parseInt(list.item(1).getNodeValue());
-        int right_value = Integer.parseInt(list.item(0).getNodeValue());
+    public static void inorder(Node n) {
+        if (n != null){
+            if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
+            NodeList list = n.getChildNodes(); //list get child nodes
+            inorder(list.item(1)); //recursive left node
+            System.out.print(n.getNodeName());   //print itself
+            inorder(list.item(0));    //recursive right node
+            if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print(")");
+        }
+    }
+
+    public static void calculate(Node n) {
+        NodeList list = n.getChildNodes(); //list get child nodes
+        int left_value = Integer.parseInt(list.item(1).getNodeValue()); //value of left node (0-9)
+        int right_value = Integer.parseInt(list.item(0).getNodeValue()); //value of right node (0-9)
         int result = 0;
         switch(n.getNodeName()) {
             case "+" :{
@@ -59,7 +59,6 @@ public class Homework1 {
                 break;
             }
         }
-//		System.out.println(left_value  + n.getNodeName() + right_value + "=" + result);
         n.setNodeValue(Integer.toString(result));
     }
 
