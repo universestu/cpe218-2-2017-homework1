@@ -2,70 +2,7 @@ import java.util.Scanner;
 import java.util.Stack;
 //Test
 
-class Node{
-    Node left, right ;
-    char c;
-    Node(char cha){
-        this.c = cha;
-        left = null;
-        right = null;
-        
-    }
-    
-    
-}
-
-public class Homework1 {
-
-	public static void main(String[] args) 
-	{
-		
-		// TODO: Implement your project here
-                System.out.print("Input: ");
-                
-                Scanner input = new Scanner(System.in);
-                Homework1 boom = new Homework1();
-                String postfix = input.nextLine();
-                char[] c = postfix.replace(" ", "").toCharArray();
-                Node root = boom.tree(c);
-                
-                System.out.print("Output: ");
-                boom.infix(root);
-                System.out.print(" = ");
-              System.out.println(calculate(root));
-	}
-        
-        Node tree(char[] postfix)
-	{
-            Stack<Node> st = new Stack();
-            Node r ,t1 ,t2 ;
-            
-           
-            
-            for(int i=0;i<postfix.length;i++){
-                if(!isOperator(postfix[i])){
-                    r = new Node(postfix[i]);
-                    st.push(r);
-                }else{
-                    r = new Node(postfix[i]);
-                    t1 = st.pop();
-                    t2 = st.pop();
-                        
-                    r.right = t1;
-                    r.left = t2;
-                    
-                  
-
-                    st.push(r);
-                    }
-                }
-            r = st.peek();
-            st.pop();
-            
-            return r;
-        }
-        
-        public static void infix(Node n)
+public static void infix(Node n)
 	{
             if (n != null) {
                 if (n.left != null && n.right != null) {  
@@ -139,3 +76,68 @@ public class Homework1 {
         
     	}
 }
+
+class Node
+{
+    Node left, right ;
+    char c;
+    Node(char cha){
+        this.c = cha;
+        left = null;
+        right = null;
+}
+    
+    
+}
+
+public class Homework1 
+{
+	public static void main(String[] args) 
+	{
+		
+		// TODO: Implement your project here
+                System.out.print("Input: ");
+                
+                Scanner input = new Scanner(System.in);
+                Homework1 boom = new Homework1();
+                String postfix = input.nextLine();
+                char[] c = postfix.replace(" ", "").toCharArray();
+                Node root = boom.tree(c);
+                
+                System.out.print("Output: ");
+                boom.infix(root);
+                System.out.print(" = ");
+              System.out.println(calculate(root));
+	}
+        
+        Node tree(char[] postfix)
+	{
+            Stack<Node> st = new Stack();
+            Node r ,t1 ,t2 ;
+            
+           
+            
+            for(int i=0;i<postfix.length;i++){
+                if(!isOperator(postfix[i])){
+                    r = new Node(postfix[i]);
+                    st.push(r);
+                }else{
+                    r = new Node(postfix[i]);
+                    t1 = st.pop();
+                    t2 = st.pop();
+                        
+                    r.right = t1;
+                    r.left = t2;
+                    
+                  
+
+                    st.push(r);
+                    }
+                }
+            r = st.peek();
+            st.pop();
+            
+            return r;
+}
+        
+        
