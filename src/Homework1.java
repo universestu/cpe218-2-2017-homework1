@@ -6,26 +6,28 @@ public class Homework1 {
 		// Begin of arguments input sample
 		if (args.length > 0) {
 			String input = args[0];
-			input = "251-*32*+";
-			/*if (input.equalsIgnoreCase("251-*32*+")) {
-				System.out.println("(2*(5-1))+(3*2)=14");
-			}*/
-
-
+			//String input = "251-*32*+";
+			Node root = new Node(input);
+			root = infix(root);
+			inorder(root);
+			System.out.print("=");
+			calculator(root);
 		}
-		String input = "251-*32*+";
-		Node root = readStack(input);
-		//infix(root);
-		//System.out.println("\n>> "+input);
-		//preorder(root);
-		//System.out.println("\n"+interPreorder(root));
-		System.out.println(calculator(root));
-
-		// End of arguments input sample
-		
-		// TODO: Implement your project here
-
 	}
+
+	public static Node infix(Node rootEmp){
+		rootEmp = readStack(rootEmp.getValue());
+		return rootEmp;
+	}
+
+	public static void inorder(Node n){
+		inOrderTree(n,0);
+	}
+
+	public static void calculator(Node n){
+		System.out.println(calNode(n));
+	}
+
 	private static Node readStack(String p){
 		Node root = new Node("0");
 		Stack<Node> stack  = new Stack<Node>();
@@ -43,20 +45,20 @@ public class Homework1 {
 			}
 
 		}
-
-
 		return stack.peek();
 	}
 
-	public static Integer calculator(Node n) {
+
+
+	public static Integer calNode(Node n) {
 		if (n == null) {
 			return 0;
 		}
 		if(n.left == null && n.right == null){
 			return n.getIntValue();
 		}
-		Integer sumLeft = calculator(n.right);
-		Integer sumRight = calculator(n.left);
+		Integer sumLeft = calNode(n.right);
+		Integer sumRight = calNode(n.left);
 		Integer sum = 0;
 
 
@@ -76,34 +78,56 @@ public class Homework1 {
 		return op == '+' || op == '-' || op == '*' || op =='/';
 	}
 
-	public static void infix(Node n){
-		if(n != null){
-			infix(n.right);
+
+
+	private static void inOrderTree(Node n, int c) {
+		// Print Infix by tree
+		if (n.left == null && n.right == null) {
 			System.out.print(n.getValue());
-			if(n.right == null){
+
+		}else {
+			// internal node - an operator
+			if( c > 0){
+			System.out.print("(");
+			}
+			inOrderTree(n.right,c+1);
+			System.out.print(n.getValue());
+			inOrderTree(n.left, c+1);
+			if(c >0) {
 				System.out.print(")");
 			}
+		}
+	}
 
-			infix(n.left);
-			if(n.left == null){
-				System.out.print("(");
+	/*public static void inorderTravel(Node n){
+		if(n == null){
+			return;
+		}
+
+		Stack<Node> stack = new Stack<Node>();
+		Node tmpNode = n;
+		while (tmpNode != null){
+			stack.push(tmpNode);
+			tmpNode = tmpNode.right;
+		}
+
+		while (stack.size() > 0){
+			tmpNode = stack.pop();
+			System.out.print(tmpNode.getValue());
+			if (tmpNode.left != null){
+				tmpNode = tmpNode.left;
+				while (tmpNode != null){
+					stack.push(tmpNode);
+					tmpNode = tmpNode.right;
+				}
 			}
 		}
-
-	}
-
+	}*/
 
 
-	public static void preorder(Node n){
-		//System.out.println("PreOrder");
-		if(n != null){
-			System.out.print(n.getValue());
-			preorder(n.left);
-			preorder(n.right);
-		}
-	}
 
-	public static String interPreorder(Node n){
+
+	/*public static String interPreorder(Node n){
 		if(n != null){
 			String tmpString = "";
 
@@ -125,5 +149,5 @@ public class Homework1 {
 			return new StringBuilder(tmpString).reverse().toString();
 		}return "";
 
-	}
+	}*/
 }
