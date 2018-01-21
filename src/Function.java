@@ -2,7 +2,7 @@ import java.util.Stack;
 
 public class Function {
 
-    public static Stack stack = new Stack();
+    public Stack stack = new Stack();
 
     public void infix(Node N) {
         if (N.node.matches("[0-9]")) {
