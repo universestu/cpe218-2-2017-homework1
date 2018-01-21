@@ -9,16 +9,12 @@ public class Homework1 {
 	public static  Node tree ;
 	public static Stack<Character> Box =new Stack<Character>();
 	public static void main(String[] args) {
-		// Begin of arguments input sample
-		String input ="251-*32*+";
-//		if (args.length > 0) {
-//			String input = args[0];
-//			if (input.equalsIgnoreCase("251-*32*+")) {
-//				System.out.println("(2*(5-1))+(3*2)=14");
-//			}
-//		}
-		for(int i=0;i<input.length();i++){
-			Box.add(input.charAt(i));
+
+		//String input = "251-*32*+";
+
+		String posfix = args[0];
+		for(int i=0;i<posfix.length();i++){
+			Box.add(posfix.charAt(i));
 		}
 		tree = new Node(Box.pop());
 		Infix(tree);
