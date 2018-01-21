@@ -12,7 +12,7 @@ public class Homework1 {
 //				System.out.println("(2*(5-1))+(3*2)=14");
 //			}
 //		}
-		String input ="251-*32*+";
+		String input =args[0];
 		for(int i=0;i<input.length();i++)
 		{
 			Bomb.add(input.charAt(i));
