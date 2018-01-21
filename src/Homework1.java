@@ -60,6 +60,7 @@ public class Homework1 {
 			}
 		}
 			public static int Calculate (node x){
+	    
 				if (x.from == '+')
 				{
 					return Calculate(x.left) + Calculate(x.right);
@@ -77,6 +78,7 @@ public class Homework1 {
 					return Calculate(x.left) / Calculate(x.right);
 				}
 				else return Integer.parseInt(x.from.toString());
+
 			}
 		}
 
