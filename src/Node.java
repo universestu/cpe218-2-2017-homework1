@@ -1,18 +1,11 @@
 public class Node {
-    private String value_node = "";
-    private Node left,right;
+    char value_node;
+    Node left;
+    Node right;
 
     Node(){
         left = null;
         right = null;
-    }
-
-    public Node GetLeft() {
-        return left;
-    }
-
-    public Node GetRight() {
-        return right;
     }
 
     public void SetLeft(Node left_node) {
@@ -23,7 +16,7 @@ public class Node {
         this.right = right_node;
     }
 
-    public void SetValueNode(String Value) {
+    public void SetValueNode(char Value) {
         this.value_node = Value;
     }
 }
