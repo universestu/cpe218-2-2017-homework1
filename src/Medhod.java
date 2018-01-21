@@ -123,7 +123,7 @@ public class Medhod  {
     public void Calculate() {
         N = 1;
         inorder();
-        System.out.print(" = "+root.value);
+        System.out.print("="+root.value);
     }
 
     public void Calculate(Node n) {
