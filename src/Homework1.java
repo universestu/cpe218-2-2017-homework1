@@ -60,7 +60,7 @@ public class Homework1 {
 			}
 		}
 			public static int Calculate (node x){
-	    
+
 				if (x.from == '+')
 				{
 					return Calculate(x.left) + Calculate(x.right);
