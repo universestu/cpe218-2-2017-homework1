@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import java.util.List;
 import java.util.Stack;
@@ -13,24 +8,26 @@ import java.util.Stack;
  */
 
 public class Homework1 {
-
+    
     public static void main(String[] args) {
-        // Begin of arguments input sample   
+        // Begin of arguments input sample
         Node root = new Node('E');
-        root.Value = args[0];
-        root = Infix(root);
-	//        System.out.println("Ans = "+Calculate(root));
+             root.Value = args[0];
+   //     root.Value = "251-*32*+";
+        root = CreateTree(root);
+        //        System.out.println("Ans = "+Calculate(root));
         String Ans = new String();
-        String[] Answ = InOrder(root).split("");
-        for(int i=1; i<InOrder(root).length()-1;i++)
+        String[] Answ = Infix(root).split("");
+        for(int i=1; i<Infix(root).length()-1;i++)
         {
             Ans += Answ[i];
         }
         System.out.println(Ans + "=" +Calculate(root));
-        // TODO: Implement your project here                                                                                                                                                                                                  
+        //     System.out.println(InOrder(root));
+        // TODO: Implement your project here
     }
-
-    public static Node Infix(Node n)
+    
+    public static Node CreateTree(Node n)
     {
         Stack<Character> Stack_Question=new Stack<Character>();
         String[] Arr_Of_Question = n.Value.split("");
@@ -43,25 +40,32 @@ public class Homework1 {
             System.out.println("Wrong Input!!!");
             return null;
         }else
-        n = toTree(n,Stack_Question);
+            n = toTree(n,Stack_Question);
         
         return n;
     }
-
-    public static String InOrder(Node n){
+    
+    public static String Infix(Node n){
         
         if(isOperator(n.Op))
         {
-            return ("(" +InOrder(n.Node_Right)+ n.Op+ InOrder(n.Node_Left) +")");   
-        }else 
+            return ("(" +Infix(n.Node_Right)+ n.Op+ Infix(n.Node_Left) +")");
+        }else
         {
             return (""+ n.Op);
         }
-             
+        
     }
-
+    
+    public static String InOrder(Node n){
+        if( n.Node_Left != null && n.Node_Right != null){
+            return (n.Op +" " + InOrder(n.Node_Right) + " " + InOrder(n.Node_Left)) ;
+        }else return (n.Op+"");
+        
+    }
+    
     public static int Calculate(Node n){
- //       System.out.println(n.Op);
+        //       System.out.println(n.Op);
         if(isOperator(n.Op)){
             if(n.Op=='+')
             {
@@ -84,7 +88,7 @@ public class Homework1 {
         
         return n.Ans;
     }
-
+    
     public static class Node{
         String Value;
         char Op;
@@ -99,7 +103,7 @@ public class Homework1 {
     {
         root = new Node(Ques.pop());
         if(isOperator(Ques.peek())){
-     //       System.out.println(isOperator(Ques.peek()) +" OP Left "+ Ques.peek());
+            //       System.out.println(isOperator(Ques.peek()) +" OP Left "+ Ques.peek());
             if(Ques.size()<=1){
                 System.out.println("Error Ran Out of Number L");
                 return root;
@@ -108,15 +112,15 @@ public class Homework1 {
             }
         }else if(isNumber(Ques.peek()))
         {
-    //        System.out.println(root.Op + " Number Left");
+            //        System.out.println(root.Op + " Number Left");
             root.Node_Left = new Node(Ques.pop());
         }else
         {
-                System.out.println("Error Wrong Input L!!");
-                return root;
+            System.out.println("Error Wrong Input L!!");
+            return root;
         }
         if(isOperator(Ques.peek())){
-   //         System.out.println(isOperator(Ques.peek()) +" OP Right "+ Ques.peek());
+            //         System.out.println(isOperator(Ques.peek()) +" OP Right "+ Ques.peek());
             if(Ques.capacity()<=1){
                 System.out.println("Error Ran Out of Number R");
                 return root;
@@ -125,25 +129,25 @@ public class Homework1 {
             }
         }else if(isNumber(Ques.peek()))
         {
-   //         System.out.println(root.Op + " Number Right");
+            //         System.out.println(root.Op + " Number Right");
             root.Node_Right = new Node(Ques.pop());
         }else
         {
-                System.out.println("Error Wrong Input!! R");
-                return root;
+            System.out.println("Error Wrong Input!! R");
+            return root;
         }
-
+        
         return root;
     }
     
     
-    public static boolean isNumber(char s) {  
+    public static boolean isNumber(char s) {
         
-       if ("1234567890".indexOf(s) != -1){
-           return true;
-       }
-       return false;
-    }  
+        if ("1234567890".indexOf(s) != -1){
+            return true;
+        }
+        return false;
+    }
     
     public static boolean isOperator(char s){
         if("+-*/".indexOf(s)!=-1)
@@ -151,5 +155,7 @@ public class Homework1 {
             return true;
         }
         return false;
-    }   
+    }
 }
+
+
