@@ -3,10 +3,10 @@ import javax.imageio.metadata.*;
 import java.util.*;
 
 public class Homework1 {
-    static Stack stack = new Stack();
-    static Node root; //root node
+    static private Stack stack = new Stack();
+    static private Node root; //root node
 
-    public static void infix(Node n) {
+    private static void infix(Node n) {
         //base case
         if(!isOperate(n.getNodeName().charAt(0))) {
             n.setNodeValue(n.getNodeName());
@@ -25,7 +25,7 @@ public class Homework1 {
         calculate(n);
     }
 
-    public static void inorder(Node n) {
+    private static void inorder(Node n) {
         if (n != null){
             if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
             NodeList list = n.getChildNodes(); //list get child nodes
@@ -36,7 +36,7 @@ public class Homework1 {
         }
     }
 
-    public static void calculate(Node n) {
+    private static void calculate(Node n) {
         NodeList list = n.getChildNodes(); //list get child nodes
         int left_value = Integer.parseInt(list.item(1).getNodeValue()); //value of left node (0-9)
         int right_value = Integer.parseInt(list.item(0).getNodeValue()); //value of right node (0-9)
@@ -62,7 +62,7 @@ public class Homework1 {
         n.setNodeValue(Integer.toString(result));
     }
 
-    public static boolean isOperate(char string) {
+    private static boolean isOperate(char string) {
         //System.out.println("string is " + string);
         return	(string == '+' || string == '-' ||
                 string == '*' || string == '/');
@@ -73,13 +73,13 @@ public class Homework1 {
         if (args.length > 0) {
             String input = args[0];
             if (input.equalsIgnoreCase("251-*32*+")) {
-//				System.out.println("(2*(5-1))+(3*2)=14");
+				System.out.println("(2*(5-1))+(3*2)=14");
             }
         }
         // End of arguments input sample
 
         // TODO: Implement your project here
-        String data = "";
+        String data;
 //		data = " "
         Scanner in = new Scanner(System.in);
         data = in.nextLine();
