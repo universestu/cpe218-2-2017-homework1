@@ -1,5 +1,3 @@
-import java.sql.SQLType;
-
 public class Homework1 {
 
 	public static String word="";
@@ -13,13 +11,13 @@ public class Homework1 {
 			}
 		}
 		// End of arguments input sample
-		
+
 		// TODO: Implement your project here
 		if(args.length != 0 ) {
 			word = args[0];
 			Node node = new Node();
 			node = infix(node);
-			System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  " = " + calculate(node));
+			System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  "=" + calculate(node));
 		}
 	}
 
