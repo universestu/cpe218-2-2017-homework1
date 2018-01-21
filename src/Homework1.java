@@ -74,25 +74,27 @@ public class Homework1 {
 	
 	public static void main(String[] args) {
 		// Begin of arguments input sample
-		if (args.length > 0) {
-			String input = args[0];
-			if (input.equalsIgnoreCase("251-*32*+")) {
+//		if (args.length > 0) {
+//			String input = args[0];
+//			if (input.equalsIgnoreCase("251-*32*+")) {
 //				System.out.println("(2*(5-1))+(3*2)=14");
-			}
-		}
+//			}
+//		}
 		// End of arguments input sample
 		
 		// TODO: Implement your project here
 		
-		String data;
+		String data = "251-*32*+";;
 		
-//		data = "251-*32*+";
+		//data = "251-*32*+";
 		
-		Scanner scanInput = new Scanner(System.in);
-		data = scanInput.nextLine();
-
-		scanInput.close();            
+//		Scanner scanInput = new Scanner(System.in);
+//		data = scanInput.nextLine();
+//
+//		scanInput.close();            
 //		System.out.println(data.length());
+		
+		if(args.length > 0) data = args[0];
 		
 		for(int i = 0; i < data.length(); i++) {
 //			System.out.print(data.charAt(i));
