@@ -5,8 +5,8 @@ import java.util.Stack;
 class Node{
     Node left, right ;
     char c;
-    Node(char c){
-        this.c = c;
+    Node(char cha){
+        this.c = cha;
         left = null;
         right = null;
         
@@ -91,16 +91,16 @@ public class Homework1 {
             }
         }
         
-        public static double calculate(Node n)
+        public static double calculate(Node node)
 	{
             
-            if (n.left == null && n.right == null)
-                return n.c - '0';
+            if (node.left == null && node.right == null)
+                return node.c - '0';
             else{
                 double result = 0;
-                double left = calculate(n.left);
-                double right = calculate(n.right);
-                char operator = n.c;
+                double left = calculate(node.left);
+                double right = calculate(node.right);
+                char operator = node.c;
                 
 
                 switch (operator){
@@ -115,9 +115,9 @@ public class Homework1 {
             }   
         }
                 
-        public static boolean isOperator(char c)
+        public static boolean isOperator(char cha)
 	{
-            return c=='+' || c=='-' || c=='*' || c=='/';
+            return cha=='+' || cha=='-' || cha=='*' || cha=='/';
         }
         
         public static Node findMin(Node node)
