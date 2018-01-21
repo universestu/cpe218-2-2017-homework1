@@ -17,15 +17,8 @@ class Node{
 
 public class Homework1 {
 
-	public static void main(String[] args) {
-		/*// Begin of arguments input sample
-		if (args.length > 0) {
-			String input = args[0];
-			if (input.equalsIgnoreCase("251-*32*+")) {
-				System.out.println("(2*(5-1))+(3*2)=14");
-			}
-		}
-		//End of arguments input sample */
+	public static void main(String[] args) 
+	{
 		
 		// TODO: Implement your project here
                 System.out.print("Input: ");
@@ -42,7 +35,8 @@ public class Homework1 {
               System.out.println(calculate(root));
 	}
         
-        Node tree(char[] postfix){
+        Node tree(char[] postfix)
+	{
             Stack<Node> st = new Stack();
             Node r ,t1 ,t2 ;
             
@@ -71,7 +65,8 @@ public class Homework1 {
             return r;
         }
         
-        public static void infix(Node n){
+        public static void infix(Node n)
+	{
             if (n != null) {
                 if (n.left != null && n.right != null) {  
                     System.out.print ("(");
@@ -85,7 +80,8 @@ public class Homework1 {
             }
          }
         
-        public static void inorder(Node n){
+        public static void inorder(Node n)
+	{
             if (n != null) {
                 inorder(n.left);
             
@@ -95,7 +91,8 @@ public class Homework1 {
             }
         }
         
-        public static double calculate(Node n){
+        public static double calculate(Node n)
+	{
             
             if (n.left == null && n.right == null)
                 return n.c - '0';
@@ -118,11 +115,13 @@ public class Homework1 {
             }   
         }
                 
-        public static boolean isOperator(char c){
+        public static boolean isOperator(char c)
+	{
             return c=='+' || c=='-' || c=='*' || c=='/';
         }
         
-        public static Node findMin(Node node){
+        public static Node findMin(Node node)
+	{
             Node min = node;
             while(min.left != null){
                 min = min.left;
@@ -130,12 +129,13 @@ public class Homework1 {
             return min;
         }
         
-        public static Node findMax(Node node){
+        public static Node findMax(Node node)
+	{
             Node max = node;
             while(max.right != null){
                 max = max.right;
             }
             return max;
         
-    }
+    	}
 }
