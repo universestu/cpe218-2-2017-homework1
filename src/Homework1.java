@@ -3,10 +3,10 @@ import javax.imageio.metadata.*;
 import java.util.*;
 
 public class Homework1 {
-    static private Stack stack = new Stack();
-    static private Node root; //root node
+    static  Stack stack = new Stack();
+    static  Node root; //root node
 
-    private static void infix(Node n) {
+    public static void infix(Node n) {
         //base case
         if(!isOperate(n.getNodeName().charAt(0))) {
             n.setNodeValue(n.getNodeName());
@@ -18,14 +18,12 @@ public class Homework1 {
         //Constructs an left node with a given stack.pop().toString().
         Node left = new IIOMetadataNode(stack.pop().toString());
         infix(left);
-        //append right node in n
-        n.appendChild(right);
-        //append left node in n
-        n.appendChild(left);
+        n.appendChild(right); //append right node in n
+        n.appendChild(left); //append left node in n
         calculate(n);
     }
 
-    private static void inorder(Node n) {
+    public static void inorder(Node n) {
         if (n != null){
             if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
             NodeList list = n.getChildNodes(); //list get child nodes
@@ -36,12 +34,12 @@ public class Homework1 {
         }
     }
 
-    private static void calculate(Node n) {
+    public static void calculate(Node n) {
         NodeList list = n.getChildNodes(); //list get child nodes
         int left_value = Integer.parseInt(list.item(1).getNodeValue()); //value of left node (0-9)
         int right_value = Integer.parseInt(list.item(0).getNodeValue()); //value of right node (0-9)
-        int result = 0;
-        switch(n.getNodeName()) {
+        int result = 0; //result
+        switch(n.getNodeName()) { //operation
             case "+" :{
                 result = left_value + right_value;
                 break;
@@ -62,10 +60,13 @@ public class Homework1 {
         n.setNodeValue(Integer.toString(result));
     }
 
-    private static boolean isOperate(char string) {
-        //System.out.println("string is " + string);
-        return	(string == '+' || string == '-' ||
-                string == '*' || string == '/');
+    public static boolean isOperate(char string) {
+        if(string == '+' || string == '-' ||
+                string == '*' || string == '/') {
+        return true;
+        }else {
+            return false;
+        }
     }
 
     public static void main(String[] args) {
