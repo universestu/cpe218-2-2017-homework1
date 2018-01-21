@@ -4,22 +4,18 @@ import javax.script.ScriptEngineManager;
 import javax.script.ScriptEngine;
 import javax.script.ScriptException;
 import package.Node;
+import java.io.*
 
 public class Homework1 {
 
 	static String infix="" ;
  	public static void main(String[] args) throws ScriptException {
-		Node root = null;
-		for (int i = 0; i < args.length; i++) {
-			Stack<Node> mem = new Stack();
-			for (int j = 0; j < args[i].length(); j++) {
-				mem.push(new Node(args[i].toCharArray()[j]));
-
-			}
+		char[] a =[100]
+		for (int i = 0; i = args.length; i++) {
+			a[i]=args[i].toCharArray();
 		}
-		root = CreateTree(args[i].toCharArray());
+		CreateTree(a);
 	}
-
 	public static boolean IsOperator (char c){
 		if(c == '+' || c == '-' || c == '*' || c == '/'){
 			return true;
@@ -29,8 +25,41 @@ public class Homework1 {
 
 	public static Node CreateTree(char []postfix){
 
+		Stack<Node> mem = new Stack();
+		Stack<Node> parent = new Stack();
+		Node mem1,pointer;
+
+		Node root = null;
+
+		for(int i=0;i<postfix.length;i++){
+			mem.push(new Node(postfix[i]));
+		}
+
+		while(mem != null){
+			mem1 = mem.pop();
+			if(IsOperator(mem1)) {
+				if (root == null) {
+					root = mem1;
+					pointer = root;
+				} else {
+					pointer.left = mem1;
+					pointer = pointer.left;
+
+				}
+				parent.push(mem1);
+			}else{
+				if(pointer.left == null){
+					pointer.left = mem1
+				}else{
+					pointer.right=mem1;
+					pointer=parent.pop();
+					}
+				}
+			}
+		}
+
+		public 
 	}
-}
 
 	// End of arguments input sample
 		// TODO: Implement your project here
