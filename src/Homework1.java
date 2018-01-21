@@ -2,7 +2,6 @@ public class Homework1 {
 
     public static Node root = null;
     public static String output;
-    public String cmonBruh;
 
     public static void main(String[] args) {
 
