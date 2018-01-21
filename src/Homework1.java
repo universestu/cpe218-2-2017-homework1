@@ -1,5 +1,8 @@
+import java.sql.SQLType;
 
 public class Homework1 {
+
+	public static String word="";
 
 	public static void main(String[] args) {
 		// Begin of arguments input sample
@@ -12,10 +15,48 @@ public class Homework1 {
 		// End of arguments input sample
 		
 		// TODO: Implement your project here
-		Node node = new Node();
-		String input = args[0];
-		for (int i = input.length()-1;i>=0 ; i--) {
-			
+		if(args.length != 0 ) {
+			word = args[0];
+			Node node = new Node();
+			System.out.println(infix(node));
 		}
+
+
+	}
+
+	private static boolean isOperator(char o){
+		if(o == '+' || o == '-' || o == '*' || o =='/' || o == '^')
+			return true;
+		return false;
+	}
+
+	public static Node infix(Node n) {
+		Node tmp = n;
+		for(int i = 0;i < word.length() ; i++) {
+			Node parent = new Node();
+			parent.value_node = word.charAt(i);
+			if(isOperator(parent.value_node)) { //node is Operator
+				if(tmp == null) {//case wrong syntax
+				}
+				else {//collect Syntax
+					parent.left = tmp.left;
+					parent.right = new Node();
+					parent.right.value_node = tmp.value_node;
+					tmp = parent;
+				}
+			}
+			else { //node isn't Operator
+				if(tmp != null) { //tmp is valid
+					parent.left = tmp;
+					tmp = parent;
+				}
+				else { //tmp is invalid
+					tmp = parent;
+				}
+			}
+
+
+		}
+		return tmp;
 	}
 }

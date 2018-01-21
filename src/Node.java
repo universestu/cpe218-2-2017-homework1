@@ -1,18 +1,11 @@
 public class Node {
-    private char value_node;
-    private Node left,right;
+    char value_node;
+    Node left;
+    Node right;
 
     Node(){
         left = null;
         right = null;
-    }
-
-    public Node GetLeft() {
-        return left;
-    }
-
-    public Node GetRight() {
-        return right;
     }
 
     public void SetLeft(Node left_node) {
