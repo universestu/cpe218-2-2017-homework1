@@ -18,16 +18,9 @@ public class Homework1 {
 		if(args.length != 0 ) {
 			word = args[0];
 			Node node = new Node();
-			infix(node);
-            System.out.println(inorder(node));
+			node = infix(node);
+			System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  " = " + calculate(node));
 		}
-
-        word = "251-*32*+";
-        Node node = new Node();
-        node = infix(node);
-        System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  " = " + calculate(node));
-
-
 	}
 
 	private static boolean isOperator(char o){
