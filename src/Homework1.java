@@ -24,8 +24,7 @@ public class Homework1 {
 
         word = "251-*32*+";
         Node node = new Node();
-        infix(node);
-        System.out.println(node.value_node);
+        node = infix(node);
         System.out.println(inorder(node));
 
 
@@ -46,7 +45,7 @@ public class Homework1 {
 				if(tmp == null) {//case wrong syntax
 				}
 				else {//collect Syntax
-					if(isOperator(tmp.left.value_node)) {
+					if(isOperator(tmp.value_node)) {
 						parent.left = tmp.left.left;
 						tmp.left.left = null;
 						parent.right = tmp;
