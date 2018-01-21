@@ -1,22 +1,19 @@
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import javax.imageio.metadata.IIOMetadataNode;
-import java.util.Scanner;
-import java.util.Stack;
+import org.w3c.dom.*;
+import javax.imageio.metadata.*;
+import java.util.*;
 
 public class Homework1 {
-	static Stack<Character> stack = new Stack<Character>();
+    static Stack stack = new Stack();
 	static Node root;
 
 	static public void inorder(Node n) {
 		if (n != null){
-			if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("("); //System.out.println (
-			NodeList list = n.getChildNodes(); //get list is child node
-			inorder(list.item(1)); //recursive left node
+			if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
+            inorder(n.getChildNodes().item(1)); //recursive left node
 			System.out.print(n.getNodeName());   //print itself
-			inorder(list.item(0));    //recursive right node
-			if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print(")"); //System.out.println )
-		}
+			inorder(n.getChildNodes().item(1));    //recursive right node
+            if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print(")");
+        }
 	}
 
 	static public void infix(Node n) {
@@ -39,11 +36,8 @@ public class Homework1 {
 	}
 
 	static public void calculate(Node n) {
-		NodeList list = n.getChildNodes();
-		int left_value = Integer.parseInt(list.item(1).getNodeValue());
-//		System.out.println("1st -> " + left); only number
-		int right_value = Integer.parseInt(list.item(0).getNodeValue());
-//		System.out.print("2nd -> " + right); only number
+		int left_value = Integer.parseInt(n.getChildNodes().item(1).getNodeValue());
+		int right_value = Integer.parseInt(n.getChildNodes().item(0).getNodeValue());
 		int result = 0;
 		switch(n.getNodeName()) {
 			case "+" :{
@@ -80,7 +74,7 @@ public class Homework1 {
 		// End of arguments input sample
 
 		// TODO: Implement your project here
-		String data;
+		String data = "";
 //		data = " "
 		Scanner in = new Scanner(System.in);
 		data = in.nextLine();
