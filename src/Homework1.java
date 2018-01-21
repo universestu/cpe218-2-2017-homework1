@@ -9,7 +9,7 @@ public class Homework1 {
 		if (args.length > 0) {
 			String input = args[0];
 			if (input.equalsIgnoreCase("251-*32*+")) {
-				System.out.println("(2*(5-1))+(3*2)=14");
+				//System.out.println("(2*(5-1))+(3*2)=14");
 			}
 		}
 		// End of arguments input sample
@@ -18,8 +18,15 @@ public class Homework1 {
 		if(args.length != 0 ) {
 			word = args[0];
 			Node node = new Node();
-			System.out.println(infix(node));
+			infix(node);
+            System.out.println(inorder(node));
 		}
+
+        word = "251-*32*+";
+        Node node = new Node();
+        infix(node);
+        System.out.println(node.value_node);
+        System.out.println(inorder(node));
 
 
 	}
@@ -65,12 +72,16 @@ public class Homework1 {
 		return tmp;
 	}
 
-	public static String inorder (Node n) {
-		String result ="";
-		Node tmp = n;
-		while (tmp.left != null) {
-			String temp = "(" + tmp.left;
-		}
-		return result;
+	public static String inorder (Node node) {
+		String left_node ="";
+		String right_node ="";
+		System.out.println(node.value_node);
+        if(node.left != null) {
+            left_node = "(" + inorder(node.left);
+        }
+        if(node.right != null) {
+            right_node = inorder(node.right) + ")";
+        }
+		return (left_node + node.value_node + right_node);
 	}
 }
