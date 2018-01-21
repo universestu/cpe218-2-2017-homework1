@@ -6,11 +6,6 @@ public class Homework1 {
         // Begin of arguments input sample
         if (args.length > 0) {
             String input = args[0];
-            if (input.equalsIgnoreCase("251-*32*+")) {
-                System.out.println("(2*(5-1))+(3*2)=14");
-            }
-
-            // End of arguments input sample
 
             // TODO: Implement your project here
 
@@ -30,16 +25,16 @@ public class Homework1 {
                 }
             }
             Tree tree = new Tree((Node) st.pop());
-            System.out.println(infix(tree.root));
-            System.out.println(calculate(tree.root));
-
+            System.out.print(infix(tree.root) + "=" + calculate(tree.root));
         }
     }
 
     public static String infix(Node n) {
         // transform postfix to infix
         String s = inorder(n);
-        return s.substring(1, s.length() - 1);
+        if (s.length() > 1)
+            return s.substring(1, s.length() - 1);
+        else return s;
     }
 
 
