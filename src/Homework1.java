@@ -1,21 +1,32 @@
 import java.util.Stack;
 import static java.lang.Character.getNumericValue;
 public class Homework1 {
-
+	
 	public static void main(String[] args) {
 		// Begin of arguments input sample
 		
 		String w = "";
 		if (args.length > 0) {
-			w = args[0];
+			for(int i=0;i<args.length;i++)
+			{
+				w = args[i];
+				
+				
+				System.out.print(inorder(infix(w)));
+		      System.out.println(" = "+calculate(infix(w)));
+			}
+			
+			
+			
 			
 		}
 		// End of arguments input sample
 		
 		// TODO: Implement your project here
-		System.out.print(inorder(infix(w)));
-	      System.out.println(" = "+calculate(infix(w)));
-	}
+		
+	
+		}
+		
 	
 	
 	public static Node infix(String input)
