@@ -25,7 +25,7 @@ public class Homework1 {
         word = "251-*32*+";
         Node node = new Node();
         node = infix(node);
-        System.out.println(inorder(node));
+        System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  " = " + calculate(node));
 
 
 	}
@@ -43,15 +43,14 @@ public class Homework1 {
 			parent.value_node = word.charAt(i);
 			if(isOperator(parent.value_node)) { //node is Operator
 				if(tmp == null) {//case wrong syntax
-				}
-				else {//collect Syntax
+
+				} else {//collect Syntax
 					if(isOperator(tmp.value_node)) {
 						parent.left = tmp.left.left;
 						tmp.left.left = null;
 						parent.right = tmp;
 						tmp = parent;
-					}
-					else {
+					} else {
 						parent.left = tmp.left;
 						tmp.left = null;
 						parent.right = tmp;
@@ -62,8 +61,7 @@ public class Homework1 {
 				if(tmp != null) { //tmp is valid
 					parent.left = tmp;
 					tmp = parent;
-				}
-				else { //tmp is invalid
+				} else { //tmp is invalid
 					tmp = parent;
 				}
 			}
@@ -71,16 +69,40 @@ public class Homework1 {
 		return tmp;
 	}
 
-	public static String inorder (Node node) {
+	public static String inorder (Node n) {
 		String left_node ="";
 		String right_node ="";
-		System.out.println(node.value_node);
-        if(node.left != null) {
-            left_node = "(" + inorder(node.left);
+        if(n.left != null) {
+            left_node = "(" + inorder(n.left);
         }
-        if(node.right != null) {
-            right_node = inorder(node.right) + ")";
+        if(n.right != null) {
+            right_node = inorder(n.right) + ")";
         }
-		return (left_node + node.value_node + right_node);
+		return (left_node + n.value_node + right_node);
+	}
+
+	public static int calculate(Node n) {
+		int result = 0;
+		if(Character.toString(n.value_node).matches("[0-9]")) { //Node is number that's mean it not have operator in next node
+			return Integer.parseInt(Character.toString(n.value_node));
+		}
+		int left_side = calculate(n.left); //calculate on all of left side
+		int right_side = calculate(n.right); //calculate on all of right side
+
+		switch (n.value_node) {
+			case '+':
+				result = left_side + right_side;
+				break;
+			case '-':
+				result = left_side - right_side;
+				break;
+			case '*':
+				result = left_side * right_side;
+				break;
+			case '/':
+				result = left_side / right_side;
+				break;
+		}
+		return  result;
 	}
 }
