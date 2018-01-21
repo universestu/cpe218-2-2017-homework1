@@ -42,6 +42,7 @@ public class Homework1 {
 				tmp.left = stack.pop();
 				tmp.right = stack.pop();
 				stack.push(tmp);
+				//
 			}
 
 		}
