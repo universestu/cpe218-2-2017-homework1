@@ -8,18 +8,18 @@ public class Homework1 {
 	static Stack<Character> _stack = new Stack<Character>();
 	static Node root;
 	
-	static public void infix(Node n) {
+	static public void inorder(Node n) {
 		if (n != null){
 			if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print("(");
 			NodeList list = n.getChildNodes();
-			infix(list.item(1)); //recursive left node
+			inorder(list.item(1)); //recursive left node
             System.out.print(n.getNodeName());   //print itself
-            infix(list.item(0));    //recursive right node
+            inorder(list.item(0));    //recursive right node
             if(isOperate(n.getNodeName().charAt(0)) && n != root) System.out.print(")");
 		}
 	}
 	
-	static public void inorder(Node n) {
+	static public void infix(Node n) {
 		//base case
 		if(!isOperate(n.getNodeName().charAt(0))) {
 			n.setNodeValue(n.getNodeName());
@@ -27,10 +27,10 @@ public class Homework1 {
 		}
 		
 		Node second_child = new IIOMetadataNode(_stack.pop().toString());
-		inorder(second_child);
+		infix(second_child);
 		
 		Node first_child = new IIOMetadataNode(_stack.pop().toString());
-		inorder(first_child);
+		infix(first_child);
 		
 		n.appendChild(second_child);
 		n.appendChild(first_child);
@@ -101,8 +101,8 @@ public class Homework1 {
 //		System.out.println();
 		
 		root = new IIOMetadataNode(_stack.pop().toString());
-		inorder(root);
 		infix(root);
+		inorder(root);
         System.out.print("=" + root.getNodeValue());
 	}
 }
