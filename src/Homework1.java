@@ -39,13 +39,20 @@ public class Homework1 {
 				if(tmp == null) {//case wrong syntax
 				}
 				else {//collect Syntax
-					parent.left = tmp.left;
-					parent.right = new Node();
-					parent.right.value_node = tmp.value_node;
-					tmp = parent;
+					if(isOperator(tmp.left.value_node)) {
+						parent.left = tmp.left.left;
+						tmp.left.left = null;
+						parent.right = tmp;
+						tmp = parent;
+					}
+					else {
+						parent.left = tmp.left;
+						tmp.left = null;
+						parent.right = tmp;
+						tmp = parent;
+					}
 				}
-			}
-			else { //node isn't Operator
+			} else { //node isn't Operator
 				if(tmp != null) { //tmp is valid
 					parent.left = tmp;
 					tmp = parent;
@@ -54,9 +61,16 @@ public class Homework1 {
 					tmp = parent;
 				}
 			}
-
-
 		}
 		return tmp;
+	}
+
+	public static String inorder (Node n) {
+		String result ="";
+		Node tmp = n;
+		while (tmp.left != null) {
+			String temp = "(" + tmp.left;
+		}
+		return result;
 	}
 }
