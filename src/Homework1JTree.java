@@ -1,5 +1,6 @@
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
+import java.awt.*;
 import java.util.Stack;
 
 import javax.swing.*;
@@ -12,8 +13,6 @@ import javax.swing.event.TreeSelectionListener;
 
 import java.net.URL;
 import java.io.IOException;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 
 public class Homework1JTree extends JPanel
         implements TreeSelectionListener {
@@ -62,6 +61,7 @@ public class Homework1JTree extends JPanel
         //Create the HTML viewing pane.
         htmlPane = new JEditorPane();
         htmlPane.setEditable(false);
+        htmlPane.setFont(new Font("Consolas", 1, 24));
         JScrollPane htmlView = new JScrollPane(htmlPane);
 
         //Add the scroll panes to a split pane.
@@ -199,9 +199,6 @@ public class Homework1JTree extends JPanel
         // Begin of arguments input sample
         if (args.length > 0) {
             String input = args[0];
-            if (input.equalsIgnoreCase("251-*32*+")) {
-                System.out.println("(2*(5-1))+(3*2)=14");
-            }
 
             // End of arguments input sample
 
@@ -223,8 +220,7 @@ public class Homework1JTree extends JPanel
                 }
             }
             binaryTree = new Tree((Node) st.pop());
-            System.out.println(infix(binaryTree.root));
-            System.out.println(calculate(binaryTree.root));
+            System.out.println(infix(binaryTree.root) + "=" + calculate(binaryTree.root));
         }
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
