@@ -16,6 +16,14 @@ public class Homework1 {
                 {
                     EX.push(example.charAt(i));
                     //System.out.print(EX);
+                    /*if (args.length > 0)
+                    {
+ 			String input = args[0];
+ 			if (input.equalsIgnoreCase("251-*32*+"))
+                        {
+ 				System.out.println("(2*(5-1))+(3*2)=14");
+ 			}
+                    }*/
                 }
                 idiotTree = new Node(EX.pop());
                 infix(idiotTree);
@@ -47,19 +55,34 @@ public class Homework1 {
         
         public static void inorder(Node node)
         {
-            if(node !=  null)
+            if(node.symbol == '+' || node.symbol =='-' || node.symbol == '*' || node.symbol == '/' )
             {
-                System.out.print("(");
-		inorder(node.left);
-		System.out.print(node.symbol);
-		inorder(node.right);
-                System.out.print(")");
+                if(node != idiotTree)
+                {
+                    System.out.print("(");
+                    inorder(node.left);
+                    System.out.print(node.symbol);
+                    inorder(node.right);
+                    System.out.print(")");
+                }
+                else
+                {
+                    inorder(node.left);
+                    System.out.print(node.symbol);
+                    inorder(node.right);
+                }
+                
             }
+            if(node.left == null && node.right == null)
+            {
+                System.out.print(node.symbol);
+            }
+            
         }
         
         public static int calculate(Node node)
         {
-            if(null != node.symbol) switch(node.symbol)
+            switch(node.symbol)
             {
                 case '+':
                     return calculate(node.left) + calculate(node.right);
@@ -72,10 +95,7 @@ public class Homework1 {
                 default:
                     return Integer.parseInt(node.symbol.toString());
             }
-            else
-            {
-                return 0;
-            }
         }
         
 }
+
