@@ -1,25 +1,25 @@
 import javax.swing.JTree;
 import java.util.Stack;
 
-
 public class Homework1 {
 	static public void main(String[] args) {
 		// Begin of arguments input sample
 		try {
 			Node current = new Node(args[0]);
-			infix(current);
-			StringBuffer x = new StringBuffer(inorder(current));
+			current = Tostack(current);
+			StringBuffer x = new StringBuffer(infix(current));
 			x.deleteCharAt(0);
 			x.deleteCharAt(x.length() - 1);
 			System.out.print(x);
-			System.out.print("=" + calculate(current));
+			System.out.println("=" + calculate(current));
+			//System.out.print(inorder(current));
 		}catch (Exception e){
 			System.out.print("Invalid Input Try Again ..");
 		}
 		// End of arguments input sample
 	}
 
-	static public Node infix(Node n){
+	static public Node Tostack(Node n){
 		Stack<Character> stack = new Stack<>();
 		for(int i=0 ; i<n.sr.length();i++){
 			stack.push(n.sr.charAt(i));
@@ -29,10 +29,17 @@ public class Homework1 {
 
 		return n;
 	}
+	static public String infix(Node n){
+		if(isOperator(n.ar)){
+			return ("("+infix(n.left) + n.ar + infix(n.right)+")");
+		}else{
+			return (n.ar+"");
+		}
+	}
 
 	static public String inorder(Node n){
-		if(isOperator(n.ar)){
-			return ("("+inorder(n.left) + n.ar + inorder(n.right)+")");
+		if(n.left != null && n.right != null){
+			return (inorder(n.left) +" "+ n.ar + " " + inorder(n.right));
 		}else{
 			return (n.ar+"");
 		}
@@ -117,3 +124,4 @@ public class Homework1 {
 		}
 	}
 }
+
