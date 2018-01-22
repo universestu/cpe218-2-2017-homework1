@@ -7,11 +7,13 @@ public class Homework1 {
     public static void main(String[] args) {
         // Begin of arguments input sample
 
+    	
+    	
         if (args.length > 0) {
             input = args[0];
             inputlength = input.length() - 1;
         }
-        makeTree(new Node(input.charAt(inputlength)));
+        inorder(new Node(input.charAt(inputlength)));
 
         infix(root);
         System.out.print("=" + calculate(root));
@@ -38,30 +40,22 @@ public class Homework1 {
     }
 
     public static void inorder(Node n) {
-        if (IsOp(n)) {
-            inorder(n.left);
-            System.out.print(n.key);
-            inorder(n.right);
-        } else {
-            System.out.print(n.key);
-        }
+    	   if (root == null) {
+               root = n;
+               inputlength--;
+           }
+           if (IsOp(n)) {
+               n.right = new Node(input.charAt(inputlength));
+               inputlength--;
+               inorder(n.right);
+               n.left = new Node(input.charAt(inputlength));
+               inputlength--;
+               inorder(n.left);
     }
-
-    public static void makeTree(Node n) {
-        if (root == null) {
-            root = n;
-            inputlength--;
-        }
-        if (IsOp(n)) {
-            n.right = new Node(input.charAt(inputlength));
-            inputlength--;
-            makeTree(n.right);
-            n.left = new Node(input.charAt(inputlength));
-            inputlength--;
-            makeTree(n.left);
-        }
-
     }
+  
+
+    
 
     public static int calculate(Node n) {
         if (IsOp(n)) {
