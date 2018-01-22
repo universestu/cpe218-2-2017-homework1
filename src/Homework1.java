@@ -15,9 +15,9 @@ public class Homework1 {
 		// TODO: Implement your project here
 		if(args.length != 0 ) {
 			word = args[0];
-			Node node = new Node();
+			Node node = null;
 			node = infix(node);
-			System.out.println(inorder(node).substring(2,inorder(node).length()-1) +  "=" + calculate(node));
+			System.out.println(inorder(node).substring(1,inorder(node).length()-1) +  "=" + calculate(node));
 		}
 	}
 
@@ -69,7 +69,7 @@ public class Homework1 {
         if(n.right != null) {
             right_node = inorder(n.right) + ")";
         }
-		return (left_node + n.value_node + right_node);
+		return left_node + n.value_node + right_node;
 	}
 
 	public static int calculate(Node n) {
