@@ -16,11 +16,11 @@ public class Homework1 {
 	
 	
 	
-	private static boolean isOperator(String c){
-		  if(c == "+" || c == "-" || c == "*" || c =="/")
-		   return true;
-		  return false;
-		 }
+//	private static boolean isOperator(String c){
+//		  if(c == "+" || c == "-" || c == "*" || c =="/")
+//		   return true;
+//		  return false;
+//		 }
 
 	private static boolean isOperator(char c){
 		  if(c == '+' || c == '-' || c == '*' || c =='/' || c == '^')
@@ -28,22 +28,38 @@ public class Homework1 {
 		  return false;
 		 }
 	
-	public static String infix(String postfix){
-		  Stack<String> s = new Stack<>();
-		   
-		  for(int i = 0; i < postfix.length(); i++){
-		   char c = postfix.charAt(i);
-		   if(isOperator(c)){
-		    String b = s.pop();
-		    String a = s.pop();
-		    s.push("("+a+c+b+")");
-		   }
-		   else
-		    s.push(""+c);
-		  }
-		  return s.pop();
-		 }
+//	public static String infix(String postfix){
+//		  Stack<String> s = new Stack<>();
+//		   
+//		  for(int i = 0; i < postfix.length(); i++){
+//		   char c = postfix.charAt(i);
+//		   if(isOperator(c)){
+//		    String b = s.pop();
+//		    String a = s.pop();
+//		    s.push("("+a+c+b+")");
+//		   }
+//		   else
+//		    s.push(""+c);
+//		  }
+//		  return s.pop();
+//		 }
 
+	public static void infix(Node n) {
+		if(n!=null) {
+			char key = n.getNodeName().charAt(0);
+			if(isOperator(key)&&n!=root){
+				System.out.print("(");
+			}
+			infix(n.getChildNodes().item(1));
+			System.out.print(n.getNodeName());
+			infix(n.getChildNodes().item(0));
+			if(isOperator(key)&&n!=root){
+				System.out.print(")");
+			}		}
+		
+	}
+	
+	
 	public static void inorder(Node n) {
 		char key = n.getNodeName().charAt(0);
 		if(!isOperator(key)){
@@ -59,7 +75,7 @@ public class Homework1 {
 		n.appendChild(secondNum);
 		n.appendChild(firstNum);
 		calculate(n);		
-}
+   }
 
 	
 	public static void calculate (Node n) {
@@ -88,6 +104,10 @@ public class Homework1 {
 	}
 	
 	public static void main(String[] args) {
+//		String data = "12+";
+//		if(args.length>0) {
+//			data = args[0];
+//		}
 		scanner = new Scanner(System.in);
 		String data = scanner.nextLine();
 		char[] newData = data.toCharArray();
@@ -96,10 +116,11 @@ public class Homework1 {
 			stack.push(x);
 			}
 		//System.out.println(stack);
-		System.out.print(infix(data) +"=");
+		//System.out.print(infix(data) +"=");
 		root = new IIOMetadataNode(stack.pop().toString());
 		inorder(root);
-		System.out.println(root.getNodeValue());
+		infix(root);
+		System.out.println("="+root.getNodeValue());
 	}
 }
 		
