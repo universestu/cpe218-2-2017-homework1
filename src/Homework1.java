@@ -6,9 +6,6 @@ public class Homework1 {
 
     public static void main(String[] args) {
         // Begin of arguments input sample
-
-    	
-    	
         if (args.length > 0) {
             input = args[0];
             inputlength = input.length() - 1;
@@ -52,11 +49,7 @@ public class Homework1 {
                inputlength--;
                inorder(n.left);
     }
-    }
-  
-
-    
-
+  }
     public static int calculate(Node n) {
         if (IsOp(n)) {
             switch (n.key) {
@@ -78,9 +71,6 @@ public class Homework1 {
     public static boolean IsOp(Node n) {
         return n.key == '+' || n.key == '-' || n.key == '*' || n.key == '/';
     }
-
-
-
     public static class Node {
 
         Node left;
