@@ -16,11 +16,7 @@ public class Homework1 {
 	
 	
 	
-//	private static boolean isOperator(String c){
-//		  if(c == "+" || c == "-" || c == "*" || c =="/")
-//		   return true;
-//		  return false;
-//		 }
+
 
 	private static boolean isOperator(char c){
 		  if(c == '+' || c == '-' || c == '*' || c =='/' || c == '^')
@@ -104,12 +100,12 @@ public class Homework1 {
 	}
 	
 	public static void main(String[] args) {
-//		String data = "12+";
-//		if(args.length>0) {
-//			data = args[0];
-//		}
-		scanner = new Scanner(System.in);
-		String data = scanner.nextLine();
+		String data = "12+";
+		if(args.length>0) {
+			data = args[0];
+		}
+//		scanner = new Scanner(System.in);
+//		String data = scanner.nextLine();
 		char[] newData = data.toCharArray();
 		for(int i=0 ; i<data.length() ; i++) {
 			String x = Character.toString(newData[i]);
