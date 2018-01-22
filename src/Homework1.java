@@ -8,17 +8,25 @@ public class Homework1 {
 			String input = args[0];
 			//String input = "251-*32*+";
 			Node root = new Node(input);
-			root = infix(root);
-			inorder(root);
+			root = textPaser(root);
+			infix(root);
 			System.out.print("=");
 			calculator(root);
 		}
+
+
 	}
 
-	public static Node infix(Node rootEmp){
+	public static Node textPaser(Node rootEmp){
 		rootEmp = readStack(rootEmp.getValue());
 		return rootEmp;
 	}
+
+	public static void infix(Node n){
+		inOrderTree(n,0);
+	}
+
+
 
 	public static void inorder(Node n){
 		inOrderTree(n,0);
@@ -80,7 +88,6 @@ public class Homework1 {
 	}
 
 
-
 	private static void inOrderTree(Node n, int c) {
 		// Print Infix by tree
 		if (n.left == null && n.right == null) {
@@ -91,12 +98,22 @@ public class Homework1 {
 			if( c > 0){
 			System.out.print("(");
 			}
-			inOrderTree(n.right,c+1);
-			System.out.print(n.getValue());
-			inOrderTree(n.left, c+1);
+			inorderTraveling(n, c);
 			if(c >0) {
 				System.out.print(")");
 			}
+		}
+	}
+
+	private static void inorderTraveling(Node n, int c){
+		// Travel in tree with PreOrder
+		if (n.left == null && n.right == null) {
+			System.out.print(n.getValue());
+
+		}else {
+			inOrderTree(n.right, c + 1);
+			System.out.print(n.getValue());
+			inOrderTree(n.left, c + 1);
 		}
 	}
 
