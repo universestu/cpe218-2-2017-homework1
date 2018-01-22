@@ -27,9 +27,8 @@ public class Homework1 {
 	}
 
 
-
 	public static void inorder(Node n){
-		inOrderTree(n,0);
+        inorderTraveling(n,0);
 	}
 
 	public static void calculator(Node n){
