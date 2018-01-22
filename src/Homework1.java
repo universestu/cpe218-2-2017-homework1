@@ -12,9 +12,8 @@ public class Homework1 {
 			infix(root);
 			System.out.print("=");
 			calculator(root);
+            //inorder(root);
 		}
-
-
 	}
 
 	public static Node textPaser(Node rootEmp){
@@ -97,7 +96,9 @@ public class Homework1 {
 			if( c > 0){
 			System.out.print("(");
 			}
-			inorderTraveling(n, c);
+            inOrderTree(n.right, c + 1);
+            System.out.print(n.getValue());
+            inOrderTree(n.left, c + 1);
 			if(c >0) {
 				System.out.print(")");
 			}
@@ -108,11 +109,10 @@ public class Homework1 {
 		// Travel in tree with PreOrder
 		if (n.left == null && n.right == null) {
 			System.out.print(n.getValue());
-
 		}else {
-			inOrderTree(n.right, c + 1);
+            inorderTraveling(n.right, c + 1);
 			System.out.print(n.getValue());
-			inOrderTree(n.left, c + 1);
+            inorderTraveling(n.left, c + 1);
 		}
 	}
 
