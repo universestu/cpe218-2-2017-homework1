@@ -14,17 +14,17 @@ public class Homework1 {
 //		// TODO: Implement your project here
 		
 		String input = "251-*32*+";
-		if (args.length > 0) {
-			input = args[0];
-		}
         Medhod medhod = new Medhod();
 
+        if (args.length > 0) {
+            input = args[0];
+        }
+
         medhod.makeTree(input);
-        
-        
         medhod.inorder();
-        System.out.print(medhod.Infix(input));
-        medhod.Calculate();
+        medhod.infix();
+        medhod.printResult();
+
 		
 	}
 }
