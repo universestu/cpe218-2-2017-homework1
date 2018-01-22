@@ -1,7 +1,6 @@
 
 public class Homework1 {
     
-    public static int i;
     static Node root= null;
     static String[] k;
     public static String input ;
@@ -12,7 +11,7 @@ public class Homework1 {
            input = args[0];
            inputlength = input.length() - 1;       }
 
-        maketree();
+        Inorder(new Node(input.substring(inputlength)));
 
         inflix(root);
 
@@ -20,40 +19,21 @@ public class Homework1 {
 
     }
 
-    public static void maketree() {
-        i = k.length - 1;
-        root = new Node(k[i]);
-        i--;
-
-        root.right = new Node(input.substring(i));
-        root.left = new Node(input.substring(i));
-
-        chack(root.right);
-        chack(root.left);
-
-    }
-
-    public void Inorder(Node a) {
-        if (a.left != null) {
-            Inorder(a.left);
+    public static void Inorder(Node a) {
+        if (root == null){
+            root = a;
+            inputlength--;
         }
-        System.out.print(a.key);
-        if (a.right != null) {
+        a.key = k[inputlength];
+        if (Operator(k[inputlength])) {
+            root.right = new Node(input.substring(inputlength));
+            inputlength--;
             Inorder(a.right);
-        }
-    }
-
-    public static void chack(Node a) {
-        a.key = k[i];
-        if (Operator(k[i])) {
-            root.right = new Node(input.substring(i));
-            root.left = new Node(input.substring(i));
-            i--;
-            chack(a.right);
-            chack(a.left);
-        } else {
-            i--;
-        }
+            root.left = new Node(input.substring(inputlength));
+            inputlength--;
+            Inorder(a.left);
+            
+        } 
     }
 
     public static boolean Operator(String k) {
