@@ -1,107 +1,120 @@
 
 public class Homework1 {
-
-    static int i = -1;
-    static Tree tree = new Tree();
+    
+    public static int i;
+    static Node root= null;
     static String[] k;
-	
+    public static String input ;
+    public static int inputlength;
 
     public static void main(String[] args) {
-        System.out.print("Input:");
-       
-        Scanner Input = new Scanner(System.in);
-       
-        String s = Input.nextLine();
-       
-        k = s.split("");
-       
+      if (args.length > 0) {
+           input = args[0];
+           inputlength = input.length() - 1;       }
+
         maketree();
-        
-        inflix(tree.root);
 
-        System.out.println("=" + calculate(tree.root));
+        inflix(root);
 
-
+        System.out.println("=" + calculate(root));
 
     }
 
     public static void maketree() {
-        i  =k.length-1;
-        tree.root = new Node(k[i]);i--;        
-            
-                tree.root.right = new Node();
-                tree.root.left = new Node();
-                
-           chack(tree.root.right);
-           chack(tree.root.left);
-            
+        i = k.length - 1;
+        root = new Node(k[i]);
+        i--;
+
+        root.right = new Node(input.substring(i));
+        root.left = new Node(input.substring(i));
+
+        chack(root.right);
+        chack(root.left);
+
     }
-    
+
     public void Inorder(Node a) {
-        if(a.left != null){
+        if (a.left != null) {
             Inorder(a.left);
         }
         System.out.print(a.key);
-        if(a.right != null){
+        if (a.right != null) {
             Inorder(a.right);
         }
     }
-   public static void chack (Node current) {
-       current.key = k[i];
-       if(Operator(k[i])){
-           current.right = new Node();
-           current.left = new Node();
-           i--;
-           chack(current.right);
-           chack(current.left);
-       }
-       else{
-           i--;
-       }
-  }
+
+    public static void chack(Node a) {
+        a.key = k[i];
+        if (Operator(k[i])) {
+            root.right = new Node(input.substring(i));
+            root.left = new Node(input.substring(i));
+            i--;
+            chack(a.right);
+            chack(a.left);
+        } else {
+            i--;
+        }
+    }
 
     public static boolean Operator(String k) {
-           switch(k) {
-                case "+" : return true;
-                case "-" : return true;
-                case "*" : return true;
-                case "/" : return true;
-                default : return false;
+        switch (k) {
+            case "+":
+                return true;
+            case "-":
+                return true;
+            case "*":
+                return true;
+            case "/":
+                return true;
+            default:
+                return false;
         }
     }
 
     public static int calculate(Node a) {
         if (Operator(a.key)) {
-            switch(a.key) {
-                case "+" : return calculate(a.left) + calculate(a.right);
-                case "-" : return calculate(a.left) - calculate(a.right);
-                case "*" : return calculate(a.left) * calculate(a.right);
-                case "/" : return calculate(a.left) / calculate(a.right);
-                default :; return 0;
-        }
-        
-        }
-            else{
+            switch (a.key) {
+                case "+":
+                    return calculate(a.left) + calculate(a.right);
+                case "-":
+                    return calculate(a.left) - calculate(a.right);
+                case "*":
+                    return calculate(a.left) * calculate(a.right);
+                case "/":
+                    return calculate(a.left) / calculate(a.right);
+                default:;
+                    return 0;
+            }
+
+        } else {
             return Integer.parseInt(a.key);
+        }
     }
-}
-       public static void inflix(Node a) {
-        if(Operator(a.key) && a != tree.root){
-            System.out.print("(");
-        }
-       
-        if(a.left != null){
-            inflix(a.left);
-        }
-       
-        System.out.print(a.key);
-       
-        if(a.right != null){
+
+    public static void inflix(Node a) {
+        if (a == root) {
+             inflix(a.left);
+            System.out.print(a.key);
             inflix(a.right);
-        }
-       
-        if(Operator(a.key) && a != tree.root){
-            System.out.print(")");
+        } else if (Operator(a.key)) {
+            System.out.print('(');
+            inflix(a.left);
+            System.out.print(a.key);
+            inflix(a.right);
+             System.out.print(')');
+         } else {
+             System.out.print(a.key);
+         }
+    }
+
+    public static class Node{
+
+        Node left;
+        Node right;
+        String key;
+
+        public Node(String key) {
+            this.key = key;
         }
     }
 }
