@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
+import javax.script.ScriptException;
+
 import org.junit.Test;
 
 public class Homework1Test {
@@ -11,7 +13,7 @@ public class Homework1Test {
 	ArrayList<CalculatorTestCase> theTestCaseList = new ArrayList<CalculatorTestCase>();
 
 	@Test
-	public void testMain() {
+	public void testMain() throws ScriptException {
 		theTestCaseList.add(new CalculatorTestCase("251-*32*+", "(2*(5-1))+(3*2)=14"));
 		theTestCaseList.add(new CalculatorTestCase("51+", "5+1=6"));
 		theTestCaseList.add(new CalculatorTestCase("51-", "5-1=4"));
