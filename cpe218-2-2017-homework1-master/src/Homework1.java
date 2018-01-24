@@ -12,8 +12,8 @@ public class Homework1 {
 				w = args[i];
 				
 				
-				System.out.print(inorder(infix(w)));
-		      System.out.println(" = "+calculate(infix(w)));
+				System.out.print(infix(inorder(w)));
+		      System.out.println(" = "+calculate(inorder(w)));
 			}
 			
 			
@@ -29,7 +29,7 @@ public class Homework1 {
 		
 	
 	
-	public static Node infix(String input)
+	public static Node inorder(String input)
     {
         Stack<Node> keepnode = new Stack<>();
         char[] b = input.toCharArray();
@@ -63,12 +63,12 @@ public class Homework1 {
     
     
     
-    public static String inorder(Node input)
+    public static String infix(Node input)
    {
        
            if((input.left.data=='+'||input.left.data=='-'||input.left.data=='*'||input.left.data=='/')&&(input.right.data=='+'||input.right.data=='-'||input.right.data=='*'||input.right.data=='/'))
        {
-           String x = inorder(input.left) + input.data + inorder(input.right);
+           String x = infix(input.left) + input.data + infix(input.right);
          return x;
             
             
@@ -76,12 +76,12 @@ public class Homework1 {
        }
            else if(input.left.data=='+'||input.left.data=='-'||input.left.data=='*'||input.left.data=='/')
            {
-               String x = "("+inorder(input.left) + input.data + ""+input.right.data+")";
+               String x = "("+infix(input.left) + input.data + ""+input.right.data+")";
                return x;
            }
            else if(input.right.data=='+'||input.right.data=='-'||input.right.data=='*'||input.right.data=='/')
            {
-               String x = "("+input.left.data+"" + input.data + inorder(input.right)+")";
+               String x = "("+input.left.data+"" + input.data + infix(input.right)+")";
                return x;
            }
        
