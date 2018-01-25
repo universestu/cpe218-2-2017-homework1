@@ -1,10 +1,12 @@
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
-import org.junit.Test;
+
 
 public class Homework1Test {
 	
