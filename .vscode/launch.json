@@ -1,0 +1,16 @@
+{
+
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch)",
+            "request": "launch",
+            "cwd": "${workspaceRoot/src}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Homework1",
+            "args": "251-*32*+"
+        }
+    ]
+}
